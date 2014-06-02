@@ -17,9 +17,10 @@ CHORD_RE = "(({})({})?({})?)".format(notes.NOTES_RE, notes.ACCIDENTALS_RE,
 
 class Chord(object):
 
-    def __init__(self, key, variation=None):
+    def __init__(self, key, variation=None, bass=None):
         self._key = key
         self._variation = variation
+        self._bass = bass or self._key
 
     @property
     def key(self):
@@ -36,6 +37,10 @@ class Chord(object):
     @property
     def variation(self):
         return self._variation
+
+    @property
+    def bass(self):
+        return self._bass
 
     @memoize
     def variation_keys(self):
